@@ -104,6 +104,18 @@
            opacity: 1 !important;
        }
 
+       .xxl-cta {
+           background: var(--text);
+           color: white !important;
+           padding: 0.8rem 1.3rem;
+           border-radius: 99px;
+           font-size: 1.5rem !important;
+           text-decoration: none;
+           text-transform: uppercase;
+           opacity: 1 !important;
+           
+       }
+
        /* --- HERO --- */
        .hero {
            padding: 10rem 0 6rem;
