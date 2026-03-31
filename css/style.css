@@ -96,6 +96,8 @@
        .nav-links a:hover { opacity: 1; }
 
        .nav-cta {
+           text-decoration: none;
+           display: inline-block;
            background: var(--text);
            color: white !important;
            padding: 0.3rem 0.8rem;
@@ -113,7 +115,15 @@
            text-decoration: none;
            text-transform: uppercase;
            opacity: 1 !important;
+           transition: var(--transition);
+           display: inline-block;
+           transition: var(--transition);
            
+       }
+
+       /* Ensure the Nav CTA is always visible even if links are hidden */
+       .nav-content .nav-cta {
+           display: inline-block;
        }
 
        /* --- HERO --- */
@@ -150,7 +160,7 @@
        }
        .hero h1 span.title {
            display: block;
-           font-size: 2.4rem;
+           font-size: 2rem;
            color: black !important;
 
            padding-bottom: 0.1em; /* Ensures 'y' and 'g' aren't cut off */
@@ -162,6 +172,8 @@
            max-width: 700px;
            margin: 0 auto 3rem;
            font-weight: 400;
+           text-transform:none;
+           letter-spacing: normal;
        }
 
        /* --- PRODUCT REVEAL SECTIONS --- */
