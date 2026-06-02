@@ -76,7 +76,7 @@ nav {
 
 .logo {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 1.25rem;
     text-decoration: none;
     color: var(--text);
     text-transform: uppercase;
@@ -121,7 +121,7 @@ nav {
     color: white !important;
     padding: 0.8rem 1.6rem;
     border-radius: 99px;
-    font-size: 1.5rem !important;
+    font-size: 1.25rem !important;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -142,7 +142,7 @@ nav {
 
 .hero-tag {
     font-family: var(--font-display);
-    font-size: 0.875rem;
+    font-size: 1.25rem;
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -163,6 +163,7 @@ nav {
 .hero h1 span.highlight {
     display: block;
     font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: bolder;
     background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -328,7 +329,7 @@ nav {
 
 .skill-item h3 {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 1.25rem;
     margin-bottom: 1rem;
     font-weight: 400;
     text-transform: uppercase;
@@ -337,7 +338,7 @@ nav {
 
 .skill-item p {
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 1.25rem;
     line-height: 1.75;
     font-weight: 400;
 }
@@ -353,17 +354,17 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    opacity: 0.4;
+    opacity: 1;
     filter: grayscale(1);
     transition: 0.3s;
 }
 
-.tech-list:hover { opacity: 0.8; filter: grayscale(0.5); }
+.tech-list:hover { opacity: 0.6; filter: grayscale(0.5); }
 
 .tech-item {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 0.875rem;
+    font-size: 1rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
