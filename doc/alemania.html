@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Caso Alemania — ficha de reunión</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#E8EBE4;
+    --panel:#F4F6F0;
+    --ink:#14201B;
+    --ink-soft:#4A574F;
+    --rule:#B6BFB2;
+    --deep:#14523F;
+    --signal:#A67C00;
+    --alert:#7A2E2E;
+    --sp:clamp(1rem,2.2vw,1.6rem);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.5;padding:var(--sp);
+  }
+  .sheet{max-width:860px;margin:0 auto;}
+
+  .mast{border-top:3px solid var(--ink);padding-top:.7rem;margin-bottom:1.6rem;}
+  .kicker{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft);display:flex;
+    justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  }
+  h1{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:clamp(2.4rem,7vw,3.9rem);line-height:.94;letter-spacing:-.01em;
+    text-transform:uppercase;margin:.35rem 0 .5rem;
+  }
+  .thesis{font-size:clamp(1rem,2.4vw,1.18rem);line-height:1.45;max-width:62ch;font-weight:500;}
+  .thesis em{font-style:normal;background:linear-gradient(transparent 62%,rgba(166,124,0,.32) 62%);}
+
+  .strip{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.5rem 0 2.2rem;
+  }
+  .fig{background:var(--panel);padding:.7rem .8rem .8rem;}
+  .fig b{
+    display:block;font-family:'IBM Plex Mono',monospace;font-weight:600;
+    font-size:clamp(1.15rem,3.3vw,1.55rem);line-height:1.05;color:var(--deep);letter-spacing:-.02em;
+  }
+  .fig span{display:block;margin-top:.3rem;font-size:11px;line-height:1.3;color:var(--ink-soft);}
+
+  section{margin-bottom:2.1rem;}
+  .lbl{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft);
+    border-bottom:1px solid var(--rule);padding-bottom:.4rem;margin-bottom:1.1rem;
+    display:flex;justify-content:space-between;gap:1rem;
+  }
+
+  .beat{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:0;
+    border:1px solid var(--rule);background:var(--panel);margin-bottom:.9rem;
+  }
+  .say{padding:1rem 1.1rem;border-right:1px solid var(--rule);}
+  .say .n{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--signal);
+    letter-spacing:.1em;display:block;margin-bottom:.45rem;font-weight:600;
+  }
+  .say p{
+    margin:0;font-family:'Barlow Condensed',sans-serif;font-weight:600;
+    font-size:clamp(1.12rem,2.8vw,1.38rem);line-height:1.2;
+  }
+  .say p::before{content:"«";}
+  .say p::after{content:"»";}
+  .because{padding:1rem 1.1rem;}
+  .because ul{margin:0;padding:0;list-style:none;}
+  .because li{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.45;
+    padding-left:.9rem;position:relative;margin-bottom:.5rem;
+  }
+  .because li:last-child{margin-bottom:0;}
+  .because li::before{content:"";position:absolute;left:0;top:.52em;width:5px;height:1px;background:var(--deep);}
+  .because strong{color:var(--deep);font-weight:600;}
+
+  .ladder{border:1px solid var(--rule);background:var(--panel);}
+  .rung{display:grid;grid-template-columns:92px 1fr;gap:0;border-bottom:1px solid var(--rule);}
+  .rung:last-child{border-bottom:0;}
+  .speed{
+    padding:.85rem .7rem;border-right:1px solid var(--rule);
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;font-weight:600;line-height:1.3;
+  }
+  .go .speed{color:var(--deep);}
+  .slow .speed{color:var(--signal);}
+  .stop .speed{color:var(--alert);}
+  .rung .body{padding:.85rem 1rem;}
+  .rung h3{
+    margin:0 0 .3rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:1.06rem;text-transform:uppercase;letter-spacing:.02em;
+  }
+  .rung p{margin:0;font-size:13.5px;line-height:1.45;color:var(--ink-soft);}
+  .de{font-family:'IBM Plex Mono',monospace;font-size:.88em;color:var(--ink);}
+
+  /* glossary */
+  .gloss{border:1px solid var(--rule);background:var(--panel);}
+  .grow{display:grid;grid-template-columns:1fr 1fr 1.3fr;border-bottom:1px solid var(--rule);}
+  .grow:last-child{border-bottom:0;}
+  .grow.head{background:#DFE4DA;}
+  .grow.head div{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-soft);padding:.5rem .8rem;
+  }
+  .grow div{padding:.5rem .8rem;font-size:13px;line-height:1.35;border-right:1px solid var(--rule);}
+  .grow div:last-child{border-right:0;}
+  .grow .es{font-weight:600;color:var(--deep);}
+  .grow .note{color:var(--ink-soft);font-size:12.5px;}
+
+  .ask{border:2px solid var(--deep);background:var(--panel);padding:1.15rem 1.2rem;}
+  .ask h3{
+    margin:0 0 .5rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:1.3rem;text-transform:uppercase;letter-spacing:.02em;color:var(--deep);
+  }
+  .ask p{margin:0 0 .55rem;font-size:14px;line-height:1.5;}
+  .ask p:last-child{margin-bottom:0;}
+
+  .twoup{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .box{border:1px solid var(--rule);background:var(--panel);padding:1rem 1.1rem;}
+  .box.warn{border-color:var(--alert);}
+  .box h3{
+    margin:0 0 .65rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+    font-size:1.05rem;text-transform:uppercase;letter-spacing:.03em;
+  }
+  .box.warn h3{color:var(--alert);}
+  .box ul{margin:0;padding:0;list-style:none;}
+  .box li{font-size:13.5px;line-height:1.45;margin-bottom:.55rem;padding-left:.95rem;position:relative;}
+  .box li:last-child{margin-bottom:0;}
+  .box li::before{content:"";position:absolute;left:0;top:.6em;width:5px;height:1px;background:var(--rule);}
+  .box.warn li::before{background:var(--alert);}
+
+  footer{
+    margin-top:2rem;border-top:1px solid var(--rule);padding-top:.7rem;
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);line-height:1.5;
+  }
+
+  @media (max-width:620px){
+    .beat{grid-template-columns:1fr;}
+    .say{border-right:0;border-bottom:1px solid var(--rule);}
+    .twoup{grid-template-columns:1fr;}
+    .rung{grid-template-columns:78px 1fr;}
+    .grow{grid-template-columns:1fr 1fr;}
+    .grow div:nth-child(3){grid-column:1 / -1;border-top:1px solid var(--rule);}
+    .grow.head div:nth-child(3){display:none;}
+  }
+  @media print{
+    body{background:#fff;padding:0;font-size:10.5pt;}
+    .fig,.beat,.ladder,.box,.ask,.gloss{background:#fff;}
+    section,.beat,.rung,.box,.grow{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="mast">
+    <div class="kicker"><span>Ficha de reunión · Dirección General</span><span>Fervalle · Alemania</span></div>
+    <h1>El Caso Alemania</h1>
+    <p class="thesis">Alemania es el mayor mercado de productos ecológicos de Europa, y la demanda crece <em>seis veces más rápido que la superficie certificada</em>. El agricultor que no puede ampliar hectáreas tiene que intensificar. Ahí es donde entran los fertilizantes funcionales — y hoy Fervalle no tiene forma de vender allí.</p>
+  </div>
+
+  <div class="strip">
+    <div class="fig"><b>18.230 M€</b><span>Mercado ecológico alemán, 2025 — récord</span></div>
+    <div class="fig"><b>+6,7 %</b><span>Crecimiento de la facturación ecológica</span></div>
+    <div class="fig"><b>+1,1 %</b><span>Crecimiento de la superficie ecológica</span></div>
+    <div class="fig"><b>1.599</b><span>Productores Demeter en Alemania</span></div>
+    <div class="fig"><b>113.411 ha</b><span>Superficie biodinámica alemana, 2025</span></div>
+    <div class="fig"><b>~½</b><span>De las hectáreas biodinámicas del mundo</span></div>
+  </div>
+
+  <section>
+    <div class="lbl"><span>Qué decir</span><span>Dilo · y luego escucha</span></div>
+
+    <div class="beat">
+      <div class="say">
+        <span class="n">01 — El mercado</span>
+        <p>Alemania es el mayor mercado ecológico de Europa, y vuelve a crecer tras la caída por la inflación.</p>
+      </div>
+      <div class="because">
+        <ul>
+          <li>Alimentación y bebida ecológica: <strong>18.230 M€</strong> en 2025, récord</li>
+          <li><strong>+6,7 %</strong> — segundo año consecutivo de crecimiento</li>
+          <li>El crecimiento viene del <strong>volumen, no del precio</strong></li>
+          <li>Total europeo: <strong>54.700 M€</strong> — Alemania ≈ un tercio</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="say">
+        <span class="n">02 — El cuello de botella (empieza por aquí)</span>
+        <p>La demanda va por delante de la producción alemana. El que no puede ampliar superficie tiene que sacar más de la que ya tiene.</p>
+      </div>
+      <div class="because">
+        <ul>
+          <li>Facturación <strong>+6,7 %</strong> frente a superficie <strong>+1,1 %</strong></li>
+          <li>Superficie ecológica: <strong>11,7 %</strong> del total, con objetivo estatal del <strong>30 % para 2030</strong></li>
+          <li>~<strong>1 de cada 3</strong> unidades de porcino ecológico ya se importa</li>
+          <li>Intensificar sin perder la certificación = <strong>bioestimulantes</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="say">
+        <span class="n">03 — La certificación que ya tenéis</span>
+        <p>Demeter es una institución alemana. Tenéis el sello, y ningún agricultor alemán puede compraros.</p>
+      </div>
+      <div class="because">
+        <ul>
+          <li>La biodinámica nace en Alemania, <strong>1924</strong>, con Rudolf Steiner</li>
+          <li>Demeter e.V. = <strong>la asociación ecológica más antigua</strong> de Alemania, cinco federaciones regionales</li>
+          <li><strong>1.599 productores · 113.411 ha</strong> (2025)</li>
+          <li>En el mundo: <strong>~230.000 ha en ~65 países</strong> — Alemania ≈ la mitad</li>
+          <li>Solo Baden-Wurtemberg: <strong>~691 operadores</strong> (520 productores, 124 elaboradores, 47 comercializadores)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="say">
+        <span class="n">04 — Por qué yo</span>
+        <p>No os vendo una traducción. Me haría cargo del discurso comercial en un idioma que aquí no habla nadie.</p>
+      </div>
+      <div class="because">
+        <ul>
+          <li>Alemán nativo, inglés casi nativo</li>
+          <li>20 años haciendo de puente entre equipos técnicos y mercado</li>
+          <li>Vuestros agrónomos ponen la ciencia — yo la hago vendible</li>
+          <li>Doy de alta como <strong>autónomo</strong>: no hace falta decidir una contratación</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="lbl"><span>Vía regulatoria</span><span>Por qué puerta entra cada producto</span></div>
+    <div class="ladder">
+      <div class="rung go">
+        <div class="speed">Semanas<br>Comunicar</div>
+        <div class="body">
+          <h3>Fortalecedores vegetales <span class="de">(Pflanzenstärkungsmittel)</span></h3>
+          <p><em>Comunicación previa</em> al BVL según el §45 de la Ley de Sanidad Vegetal alemana — no es una autorización. Comercializable en cuanto se comunica y se asigna número de listado. No exige demostrar eficacia. Probable encaje para los inductores de defensas (Blue Line).</p>
+        </div>
+      </div>
+      <div class="rung go">
+        <div class="speed">Rápido<br>si CE</div>
+        <div class="body">
+          <h3>Fertilizantes bajo el Reglamento UE 2019/1009</h3>
+          <p>Los productos conformes con marcado CE circulan libremente por la UE. Sin trámite alemán. Primera pregunta para los agrónomos: <strong>¿qué referencias ya cumplen?</strong></p>
+        </div>
+      </div>
+      <div class="rung slow">
+        <div class="speed">Lento<br>Incierto</div>
+        <div class="body">
+          <h3>Tipos de fertilizante solo nacionales <span class="de">(DüMV)</span></h3>
+          <p>No existe procedimiento formal de solicitud. Consulta al ministerio → Consejo Científico de Fertilización → modificaciones del reglamento alemán a intervalos irregulares, con aprobación del Bundesrat. <strong>No hay derecho a la autorización.</strong> No es vía de entrada.</p>
+        </div>
+      </div>
+      <div class="rung stop">
+        <div class="speed">Cerrado<br>de momento</div>
+        <div class="body">
+          <h3>Productos fitosanitarios</h3>
+          <p>Autorización completa según el Reglamento 1107/2009. Las líneas de biofungicidas y bioinsecticidas caen casi seguro aquí. No abrir por ahí.</p>
+        </div>
+      </div>
+      <div class="rung slow">
+        <div class="speed">La puerta<br>real</div>
+        <div class="body">
+          <h3>Lista de insumos FiBL <span class="de">(Betriebsmittelliste)</span></h3>
+          <p>Evalúa los productos frente al reglamento ecológico europeo <em>y</em> frente a Bioland, Demeter, Demeter International, Naturland, Gäa, Ecovin y Biokreis. De pago, abierta todo el año, vía el portal obligatorio «My Inputs» desde mayo de 2025. <strong>Este es el proyecto acotable.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="lbl"><span>Cómo se llama cada cosa</span><span>Español · Alemán · Nota</span></div>
+    <div class="gloss">
+      <div class="grow head"><div>Español</div><div>Alemán / original</div><div>Nota</div></div>
+      <div class="grow"><div class="es">Fortalecedor vegetal</div><div>Pflanzenstärkungsmittel</div><div class="note">Categoría alemana sin equivalente exacto en España. Solo comunicación, no autorización.</div></div>
+      <div class="grow"><div class="es">Producto fitosanitario</div><div>Pflanzenschutzmittel</div><div class="note">Autorización completa. La frontera regulatoria clave.</div></div>
+      <div class="grow"><div class="es">Fertilizante / abono</div><div>Düngemittel</div><div class="note">Reglamento UE 2019/1009 o normativa nacional (DüMV).</div></div>
+      <div class="grow"><div class="es">Bioestimulante</div><div>Biostimulanz</div><div class="note">El argumento de venta central para la intensificación.</div></div>
+      <div class="grow"><div class="es">Lista de insumos ecológicos</div><div>Betriebsmittelliste (FiBL)</div><div class="note">El verdadero portero del mercado. De pago y abierta todo el año.</div></div>
+      <div class="grow"><div class="es">Agencia federal (BVL)</div><div>Bundesamt für Verbraucherschutz und Lebensmittelsicherheit</div><div class="note">Recibe la comunicación de fortalecedores vegetales.</div></div>
+      <div class="grow"><div class="es">Agricultura ecológica</div><div>Ökolandbau / Bio</div><div class="note">En Alemania «Bio» es el término corriente, no «ecológico».</div></div>
+      <div class="grow"><div class="es">Agricultura biodinámica</div><div>Biodynamische Landwirtschaft</div><div class="note">Demeter es el sello, y es alemán de origen.</div></div>
+      <div class="grow"><div class="es">Expediente de registro</div><div>Zulassungsdossier</div><div class="note">Lo que hoy frena la entrada en cada país.</div></div>
+      <div class="grow"><div class="es">Residuo cero</div><div>Rückstandsfrei</div><div class="note">Vuestro diferencial. Conecta con los LMR de exportación.</div></div>
+      <div class="grow"><div class="es">Estrés abiótico</div><div>Abiotischer Stress</div><div class="note">Calor, sequía, salinidad. El puente entre Murcia y Alemania.</div></div>
+      <div class="grow"><div class="es">Federación regional</div><div>Landesverband</div><div class="note">Cinco en Alemania. La vía de acceso a los productores.</div></div>
+      <div class="grow"><div class="es">Feria BIOFACH (Núremberg)</div><div>BIOFACH</div><div class="note">Feria mundial del sector ecológico. El sitio más eficiente para captar distribuidores.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="lbl"><span>La propuesta</span><span>Pequeña, con fecha y facturable</span></div>
+    <div class="ask">
+      <h3>Un piloto, no una transformación</h3>
+      <p><strong>Alcance:</strong> coger una lista corta de referencias — las relevantes para Demeter — y llevarlas por la comunicación al BVL donde proceda y a la lista de insumos FiBL con conformidad ecológica europea y Demeter.</p>
+      <p><strong>Vosotros ponéis:</strong> composiciones, certificados existentes y un agrónomo para dudas. <strong>Yo pongo:</strong> los expedientes, el etiquetado y el material técnico en alemán, y las presentaciones.</p>
+      <p><strong>Entregable:</strong> una gama legal en Alemania y listada en Demeter que un distribuidor pueda pedir de verdad — más el material comercial en alemán para ponérselo delante. Semanas cerradas, precio cerrado, una factura.</p>
+      <p><strong>Si duda:</strong> Fervalle ya ha sido beneficiaria de fondos europeos para transformación digital, promoción online y comercio electrónico, y del programa de internacionalización de la Cámara de Comercio. No es un compromiso nuevo — es ejecutar uno que ya está por escrito.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="lbl"><span>Descubrimiento</span><span>Escuchar más que vender</span></div>
+    <div class="twoup">
+      <div class="box">
+        <h3>Preguntarle</h3>
+        <ul>
+          <li>¿Hay hoy alguna forma de que un agricultor alemán os compre?</li>
+          <li>Cuando abrís un mercado, ¿cuánto pasa hasta el primer contenedor? ¿En qué se va ese tiempo?</li>
+          <li>¿Quién redacta los expedientes de registro y cuánto tarda uno?</li>
+          <li>Cuando firma un distribuidor, ¿qué le entregáis el primer día? ¿Quién lo prepara?</li>
+          <li>Crecisteis un 22 % el año pasado sin ampliar plantilla. ¿Estaba previsto?</li>
+          <li>Si me sitúo entre el equipo técnico y el mercado, ¿quién decide el mensaje?</li>
+        </ul>
+      </div>
+      <div class="box warn">
+        <h3>Evitar</h3>
+        <ul>
+          <li>No empieces por la IA. Empieza por su cuello de botella y deja que él pregunte cómo.</li>
+          <li>No finjas saber agronomía: «para eso tenéis gente, y mejor de la que yo sería nunca».</li>
+          <li>No afirmes el vacío alemán como un hecho. No encontré vía de compra; pregúntale si es así.</li>
+          <li>No presentes un plan de entrada cerrado. Es prueba de que sabes trabajar, no una decisión tomada por él.</li>
+          <li>No contestes una pregunta técnica que no puedas contestar. «Eso es para el equipo agronómico — te lo respondo bien el jueves» te da una segunda reunión.</li>
+          <li>No propongas los biofungicidas ni los bioinsecticidas como cuña de entrada.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Fuentes: AMI / Arbeitskreis Biomarkt y BÖLW (facturación ecológica 2025) · Demeter e.V. (productores y superficie 2025) · Demeter Baden-Wurtemberg · Betriebsmittelliste FiBL · BVL (§45 PflSchG) · BMLEH (procedimiento DüMV) · eInforma / Empresite (datos financieros de Fervalle).<br>
+    La ausencia de Fervalle en el mercado alemán es una deducción a partir de fuentes públicas — no se encontró distribuidor, punto de venta ni entrada en la lista FiBL. Confírmalo con él en vez de afirmarlo.
+  </footer>
+
+</div>
+</body>
+</html>
